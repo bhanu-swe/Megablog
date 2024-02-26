@@ -1,4 +1,4 @@
-import { Console } from "console";
+
 import  conf from "../conf/conf";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
@@ -79,7 +79,7 @@ export class Service{
         }
     }
 
-    async getposts(queries = [Query.equal("status","active")]){
+    async getPosts(queries = [Query.equal("status","active")]){
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
@@ -97,7 +97,7 @@ export class Service{
 
     async uploadFile(file){
         try {
-            return await this.bucket(
+            return await this.bucket.createFile(
                 conf.appwriteBucketId,
                 ID.unique(),
                 file,
